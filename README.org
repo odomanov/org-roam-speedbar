@@ -13,4 +13,13 @@ Before you use ~org-roam-speedbar~ you need to set the starting node.  For examp
 (setq org-roam-sb-startid "1cfc93fd-d5d1-4031-9c71-785216bb9f32")
 #+end_src
 
-After that you 
+After that you launch the command ~speedbar~.  In Files and Buffers display
+modes the command ~o~ switches to the Org-Roam display mode. It shows the
+~org-roam-sb-startid~ with one level extended.
+
+o ::
+Start from the very beginning.
+
+RET ::
+
+
