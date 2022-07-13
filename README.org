@@ -1,0 +1,16 @@
+* org-roam-speedbar
+
+Usual Speedbar commands for the cursor movement apply.
+
+** Installation
+
+#+begin_src emacs-lisp
+(require 'org-roam-speedbar)
+#+end_src
+
+Before you use ~org-roam-speedbar~ you need to set the starting node.  For example:
+#+begin_src emacs-lisp
+(setq org-roam-sb-startid "1cfc93fd-d5d1-4031-9c71-785216bb9f32")
+#+end_src
+
+After that you 
