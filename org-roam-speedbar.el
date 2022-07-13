@@ -25,6 +25,8 @@
   :type 'string
   :group 'org-roam)
 
+(require 'speedbar)
+
 (defun org-roam-sb--expand (text token indent)
   "Expanding/contracting the item."
   (cond ((string-match "\\+" text)	;we have to expand this file
@@ -161,8 +163,9 @@ of those."
      ;;(speedbar-line-directory . MyExtension-speedbar-line-directory)
      )))
 
-(with-eval-after-load 'speedbar
-  (org-roam-sb--install))
+;; (with-eval-after-load 'speedbar
+;;   (org-roam-sb--install))
+(org-roam-sb--install)
 
 (provide 'org-roam-speedbar)
 
