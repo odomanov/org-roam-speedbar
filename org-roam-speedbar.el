@@ -6,7 +6,17 @@
 
 ;;; Commentary:
 
-;;;  Org-Roam Speedbar.
+;;;  First customize or setup the `org-roam-sb-startid'.  It should contain
+;;;  the id for the root node.  Then launch `speedbar' as usual.
+;;;  The command `o' switches to the Org-Roam display mode.
+;;;
+;;;  Commands:
+;;;    o           - Start from the very beginning.
+;;;    RET, +, =   - Expand/contract the current node.
+;;;    C-RET       - Open the file corresponding to the current node.
+;;;    TAB         - Make the current node the root node and refresh the frame.
+;;;    f, b        - Switch to the Files or Buffers display mode accordingly.
+
 
 ;;; Code:
 
