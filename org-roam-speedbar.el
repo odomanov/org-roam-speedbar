@@ -1,4 +1,4 @@
-;;; org-roam-speedbar.el --- Speedbar display mode for Org-Roam
+;;; org-roam-speedbar.el --- Speedbar display mode for Org-roam
 
 ;; Author: Oleg Domanov <odomanov@yandex.ru>
 ;; Version: 1.0
@@ -8,7 +8,7 @@
 
 ;;;  First customize or setup the `org-roam-sb-startid'.  It should contain
 ;;;  the id for the root node.  Then launch `speedbar' as usual.
-;;;  The command `o' switches to the Org-Roam display mode.
+;;;  The command `o' switches to the Org-roam display mode.
 ;;;
 ;;;  Commands:
 ;;;    o           - Start from the very beginning.
@@ -75,7 +75,7 @@ of those."
   "Refresh display staring with STARTID."
   (speedbar-with-writable
     (erase-buffer)
-    (insert "     =-=  Org-Roam  =-=\n")
+    (insert "     =-=  Org-roam  =-=\n")
     (let ((start (org-roam-db-query
                   `[:select  [file title id] :from nodes
                              :where (= nodes:id $s1)] startid)))
@@ -136,7 +136,7 @@ of those."
   (interactive)
   (setq org-roam-sb--menu-items '("")) 
   (setq org-roam-sb--mode-map (speedbar-make-specialized-keymap))
-  (speedbar-add-expansion-list '("Org-Roam"
+  (speedbar-add-expansion-list '("Org-roam"
                                  org-roam-sb--menu-items
                                  org-roam-sb--mode-map
                                  org-roam-sb--buttons))
@@ -147,18 +147,18 @@ of those."
     (define-key map "+" #'org-roam-sb--line-expand)
     (define-key map "=" #'org-roam-sb--line-expand)
     (define-key map "o" (lambda () (interactive)
-                          (speedbar-change-initial-expansion-list "Org-Roam")))
+                          (speedbar-change-initial-expansion-list "Org-roam")))
     (define-key map "b" (lambda () (interactive)
                           (speedbar-change-initial-expansion-list "quick buffers")))
     (define-key map "f" (lambda () (interactive)
                           (speedbar-change-initial-expansion-list "files"))))
   (define-key speedbar-file-key-map    "o" (lambda () (interactive)
-                                             (speedbar-change-initial-expansion-list "Org-Roam")))
+                                             (speedbar-change-initial-expansion-list "Org-roam")))
   (define-key speedbar-buffers-key-map "o" (lambda () (interactive)
-                                             (speedbar-change-initial-expansion-list "Org-Roam")))
+                                             (speedbar-change-initial-expansion-list "Org-roam")))
 
   (speedbar-add-mode-functions-list
-   '("Org-Roam"
+   '("Org-roam"
      (speedbar-item-info . org-roam-sb--item-info)
      ;;(speedbar-line-directory . MyExtension-speedbar-line-directory)
      )))
