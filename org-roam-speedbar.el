@@ -75,6 +75,7 @@ of those."
   "Refresh display staring with STARTID."
   (speedbar-with-writable
     (erase-buffer)
+    (toggle-truncate-lines 1)
     (insert "     =-=  Org-roam  =-=\n")
     (let ((start (org-roam-db-query
                   `[:select  [file title id] :from nodes
@@ -88,10 +89,7 @@ of those."
   (if (or (not org-roam-sb-startid)
           (equal org-roam-sb-startid ""))
       (insert "org-roam-sb-startid is not set")
-    (progn
-      (org-roam-sb--start org-roam-sb-startid)
-      (speedbar-with-writable
-        (visual-line-mode 0)))))
+    (org-roam-sb--start org-roam-sb-startid)))
 
 (defun org-roam-sb--TAB ()
   "Refresh display with the current item as root."
@@ -163,8 +161,6 @@ of those."
      ;;(speedbar-line-directory . MyExtension-speedbar-line-directory)
      )))
 
-;; (with-eval-after-load 'speedbar
-;;   (org-roam-sb--install))
 (org-roam-sb--install)
 
 (provide 'org-roam-speedbar)
