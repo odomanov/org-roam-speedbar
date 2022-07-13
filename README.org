@@ -42,11 +42,11 @@ Usual Speedbar commands for the cursor movement apply.
 Other commands:
 
 - o :: Start from the very beginning.
-- RET ::
+- TAB ::
 - + ::
 - = :: Expand/contract the current node.
-- C-RET :: Open the file corresponding to the current node.
-- TAB :: Make the current node the root node and refresh the frame.
+- RET :: Open the file corresponding to the current node.
+- SPC :: Make the current node the root node and refresh the frame.
 - f ::
 - b :: Switch to the Files or Buffers display mode accordingly.
 

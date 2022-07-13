@@ -91,7 +91,7 @@ of those."
       (insert "org-roam-sb-startid is not set")
     (org-roam-sb--start org-roam-sb-startid)))
 
-(defun org-roam-sb--TAB ()
+(defun org-roam-sb--make-root ()
   "Refresh display with the current item as root."
   (interactive)
   (end-of-line)
@@ -139,9 +139,9 @@ of those."
                                  org-roam-sb--mode-map
                                  org-roam-sb--buttons))
   (let ((map org-roam-sb--mode-map))
-    (define-key map (kbd "TAB") #'org-roam-sb--TAB)
-    (define-key map (kbd "<return>") #'org-roam-sb--line-expand)
-    (define-key map (kbd "<C-return>") #'org-roam-sb--line-open)
+    (define-key map (kbd "SPC") #'org-roam-sb--make-root)
+    (define-key map (kbd "RET") #'org-roam-sb--line-open)
+    (define-key map (kbd "TAB") #'org-roam-sb--line-expand)
     (define-key map "+" #'org-roam-sb--line-expand)
     (define-key map "=" #'org-roam-sb--line-expand)
     (define-key map "o" (lambda () (interactive)
