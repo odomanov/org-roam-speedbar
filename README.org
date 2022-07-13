@@ -17,9 +17,11 @@ After that you launch the command ~speedbar~.  In Files and Buffers display
 modes the command ~o~ switches to the Org-Roam display mode. It shows the
 ~org-roam-sb-startid~ with one level extended.
 
-o ::
-Start from the very beginning.
-
-RET ::
+- o :: Start from the very beginning.
+- RET :: Expand/contract the current node.
+- TAB :: Make the current node the root node and refresh the display.
+- C-RET :: Open the file of the current node.
+- f ::
+- b :: Switch to the Files or Buffers display modу accordingly
 
 
