@@ -5,29 +5,30 @@ This is a simple [[https://www.orgroam.com/][Org-roam]] display mode for [[https
 ** Installation
 
 #+begin_src emacs-lisp
-(require 'org-roam-speedbar)
+  (require 'org-roam-speedbar)
 #+end_src
 
-Before you use ~org-roam-speedbar~ you need to customize or set up the id
+Before you use ~org-roam-speedbar~ you need to customize or set up an id
 for the starting node.  For example:
 #+begin_src emacs-lisp
-(setq org-roam-sb-startid "1cfc93fd-d5d1-4031-9c71-785216bb9f32")
+  (setq org-roam-sb-startid "1cfc93fd-d5d1-4031-9c71-785216bb9f32")
 #+end_src
 
 Or use ~straight~ (or ~use-package~):
 #+begin_src emacs-lisp
-(use-package org-roam-speedbar
-    :straight (org-roam-speedbar :type git :host github :repo "/odomanov/org-roam-speedbar")
-    :after speedbar
-    :config
-    (setq org-roam-sb-startid "1cfc93fd-d5d1-4031-9c71-785216bb9f32")
-    (setq speedbar-frame-parameters '((minibuffer)
-                                      (width . 50)
-                                      (border-width . 0)
-                                      (menu-bar-lines . 0)
-                                      (tool-bar-lines . 0)
-                                      (unsplittable . t)
-                                      (left-fringe . 0))))
+  (use-package org-roam-speedbar
+      :straight (org-roam-speedbar :type git :host github
+                                   :repo "/odomanov/org-roam-speedbar")
+      :after speedbar
+      :config
+      (setq org-roam-sb-startid "1cfc93fd-d5d1-4031-9c71-785216bb9f32")
+      (setq speedbar-frame-parameters '((minibuffer)
+                                        (width . 50)
+                                        (border-width . 0)
+                                        (menu-bar-lines . 0)
+                                        (tool-bar-lines . 0)
+                                        (unsplittable . t)
+                                        (left-fringe . 0))))
 #+end_src
 
 After that launch ~speedbar~.  In Files and Buffers display modes the
