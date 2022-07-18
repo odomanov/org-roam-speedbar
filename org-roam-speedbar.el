@@ -6,23 +6,22 @@
 
 ;;; Commentary:
 
-;;;  First customize or setup the `org-roam-sb-startid'.  It should contain
-;;;  the id for the root node.  Then launch `speedbar' as usual.
+;;;  First customize or setup the `org-roam-sb-startids'.  It should contain
+;;;  a list of ids for the initial display.  Then launch `speedbar' as usual.
 ;;;  The command `o' switches to the Org-roam display mode.
 ;;;
 ;;;  Commands:
 ;;;    o           - Start from the very beginning.
-;;;    RET, +, =   - Expand/contract the current node.
-;;;    C-RET       - Open the file corresponding to the current node.
-;;;    TAB         - Make the current node the root node and refresh the frame.
+;;;    TAB, +, =   - Expand/contract the current node.
+;;;    RET         - Open the file corresponding to the current node.
 ;;;    f, b        - Switch to the Files or Buffers display mode accordingly.
 
 
 ;;; Code:
 
-(defcustom org-roam-sb-startid ""
+(defcustom org-roam-sb-startids nil
   "The initial ID for Speedbar."
-  :type 'string
+  :type '(repeat string)
   :group 'org-roam)
 
 (require 'speedbar)
@@ -74,30 +73,29 @@ of those."
 (defun org-roam-sb--start (startid)
   "Refresh display staring with STARTID."
   (speedbar-with-writable
-    (erase-buffer)
-    (toggle-truncate-lines 1)
-    (insert "     =-=  Org-roam  =-=\n")
     (let ((start (org-roam-db-query
                   `[:select  [file title id] :from nodes
                              :where (= nodes:id $s1)] startid)))
-      (org-roam-sb--item-maybe-subitems start 0)))
-  (previous-line)
-  (speedbar-expand-line))
+      (org-roam-sb--item-maybe-subitems start 0))))
 
 (defun org-roam-sb--buttons (dir depth)
   "Buttons for DIR and DEPTH (not used actually)."
-  (if (or (not org-roam-sb-startid)
-          (equal org-roam-sb-startid ""))
-      (insert "org-roam-sb-startid is not set")
-    (org-roam-sb--start org-roam-sb-startid)))
+  (if (not org-roam-sb-startids)
+      (insert "org-roam-sb-startids is not set"))
+  (speedbar-with-writable
+    (erase-buffer)
+    (toggle-truncate-lines 1)
+    (insert "     =-=  Org-roam  =-=\n")
+    (dolist (id org-roam-sb-startids)
+      (org-roam-sb--start id))))
 
-(defun org-roam-sb--make-root ()
-  "Refresh display with the current item as root."
-  (interactive)
-  (end-of-line)
-  (backward-char)
-  (let ((start (caddr (get-text-property (point) 'speedbar-token))))
-    (org-roam-sb--start start)))
+;; (defun org-roam-sb--make-root ()
+;;   "Refresh display with the current item as root."
+;;   (interactive)
+;;   (end-of-line)
+;;   (backward-char)
+;;   (let ((start (caddr (get-text-property (point) 'speedbar-token))))
+;;     (org-roam-sb--start start)))
 
 (defun org-roam-sb--line-open ()
   "Open file at current position."
@@ -139,7 +137,7 @@ of those."
                                  org-roam-sb--mode-map
                                  org-roam-sb--buttons))
   (let ((map org-roam-sb--mode-map))
-    (define-key map (kbd "SPC") #'org-roam-sb--make-root)
+    ;; (define-key map (kbd "SPC") #'org-roam-sb--make-root)
     (define-key map (kbd "RET") #'org-roam-sb--line-open)
     (define-key map (kbd "TAB") #'org-roam-sb--line-expand)
     (define-key map "+" #'org-roam-sb--line-expand)
